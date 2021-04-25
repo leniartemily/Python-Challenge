@@ -23,7 +23,7 @@ with open('Resources/budget_data.csv', 'r') as file:
             sum_revenue = sum_revenue + month_revenue
 
             revenues.append(month_revenue)
-            
+
             months.append(row[0])
 
         row_index += 1
@@ -45,6 +45,7 @@ month_greatest_increase_profit = change_revenues.index(greatest_increase_profit)
 greatest_decrease_profit = min(change_revenues)
 month_greatest_decrease_profit = change_revenues.index(greatest_decrease_profit) + 1
 
+print("-------------------------")
 print("number of months: ")
 print(month_counter)
 print("total revenue: ")
@@ -57,8 +58,18 @@ print("month greatest increase in profit: ")
 print(months[month_greatest_increase_profit])
 print("greatest decrease in profit: ")
 print(greatest_decrease_profit)
+print("greatest decrease in profit: ")
 print(months[month_greatest_decrease_profit])
+print('---------------')
 
-# Write results to file
-with open('results.txt', 'w') as output:
-    output.write("number of months: " + str(month_counter))
+output = f"""Financial Analysis
+----------------------------
+Total Months: {month_counter}
+Total: ${sum_revenue}
+Average Change: ${average_change}
+Greatest Increase in Profits: {months[month_greatest_increase_profit]}
+Greatest Decrease in Profits: {months[month_greatest_decrease_profit]}"""
+
+# Export the results to text file
+with open("output","w") as txt_file:
+    txt_file.write(output)
